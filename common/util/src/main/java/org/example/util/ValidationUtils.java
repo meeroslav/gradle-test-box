@@ -11,7 +11,7 @@ public final class ValidationUtils {
     );
 
     private static final Pattern PHONE_PATTERN = Pattern.compile(
-        "^\\+?[1-9]\\d{1,14}$"
+        "^\\+?[1-9]\\d{6,14}$"  // Minimum 7 digits, maximum 15 digits (including first digit)
     );
 
     private ValidationUtils() {

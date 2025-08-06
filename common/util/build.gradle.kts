@@ -7,6 +7,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":list"))
-    implementation(project(":utilities"))
+    // Use api instead of implementation to expose these dependencies to consuming modules
+    api(project(":list"))
+    api(project(":utilities"))
 }

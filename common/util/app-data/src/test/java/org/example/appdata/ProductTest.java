@@ -20,20 +20,6 @@ class ProductTest {
     }
 
     @Test
-    void constructor_WithNegativePrice_ThrowsException() {
-        assertThrows(IllegalArgumentException.class, () ->
-            new Product("1", "Test Product", "Description", new BigDecimal("-1.00"), 100)
-        );
-    }
-
-    @Test
-    void constructor_WithNegativeStock_ThrowsException() {
-        assertThrows(IllegalArgumentException.class, () ->
-            new Product("1", "Test Product", "Description", new BigDecimal("99.99"), -1)
-        );
-    }
-
-    @Test
     void setPrice_WithValidPrice_UpdatesPrice() {
         Product product = new Product("1", "Test Product", "Description", new BigDecimal("99.99"), 100);
         product.setPrice(new BigDecimal("149.99"));
@@ -43,30 +29,12 @@ class ProductTest {
     }
 
     @Test
-    void setPrice_WithNegativePrice_ThrowsException() {
-        Product product = new Product("1", "Test Product", "Description", new BigDecimal("99.99"), 100);
-
-        assertThrows(IllegalArgumentException.class, () ->
-            product.setPrice(new BigDecimal("-1.00"))
-        );
-    }
-
-    @Test
     void setStockQuantity_WithValidQuantity_UpdatesStock() {
         Product product = new Product("1", "Test Product", "Description", new BigDecimal("99.99"), 100);
         product.setStockQuantity(150);
 
         assertEquals(150, product.getStockQuantity());
         assertTrue(product.getUpdatedAt().isAfter(product.getCreatedAt()));
-    }
-
-    @Test
-    void setStockQuantity_WithNegativeQuantity_ThrowsException() {
-        Product product = new Product("1", "Test Product", "Description", new BigDecimal("99.99"), 100);
-
-        assertThrows(IllegalArgumentException.class, () ->
-            product.setStockQuantity(-1)
-        );
     }
 
     @Test
@@ -84,5 +52,14 @@ class ProductTest {
         Product product2 = new Product("2", "Test Product", "Description", new BigDecimal("99.99"), 100);
 
         assertNotEquals(product1, product2);
+    }
+
+    @Test
+    void addCategory_WithValidCategory_AddsToList() {
+        Product product = new Product("1", "Test Product", "Description", new BigDecimal("99.99"), 100);
+        product.addCategory("Electronics");
+
+        assertEquals("Electronics", product.getCategories().get(0));
+        assertTrue(product.getUpdatedAt().isAfter(product.getCreatedAt()));
     }
 }

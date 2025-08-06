@@ -7,5 +7,6 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":list"))
+    api(project(":list"))
+    api(project(":utilities"))
 }

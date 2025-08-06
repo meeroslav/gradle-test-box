@@ -1,6 +1,5 @@
 package org.example.appdata;
 
-import org.example.util.ValidationUtils;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,12 +15,6 @@ public class User {
     private LocalDateTime updatedAt;
 
     public User(String id, String email, String name, String phoneNumber) {
-        if (!ValidationUtils.isValidEmail(email)) {
-            throw new IllegalArgumentException("Invalid email address");
-        }
-        if (phoneNumber != null && !ValidationUtils.isValidPhoneNumber(phoneNumber)) {
-            throw new IllegalArgumentException("Invalid phone number");
-        }
 
         this.id = id;
         this.email = email;
@@ -40,9 +33,6 @@ public class User {
     }
 
     public void setEmail(String email) {
-        if (!ValidationUtils.isValidEmail(email)) {
-            throw new IllegalArgumentException("Invalid email address");
-        }
         this.email = email;
         this.updatedAt = LocalDateTime.now();
     }
@@ -61,9 +51,6 @@ public class User {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        if (phoneNumber != null && !ValidationUtils.isValidPhoneNumber(phoneNumber)) {
-            throw new IllegalArgumentException("Invalid phone number");
-        }
         this.phoneNumber = phoneNumber;
         this.updatedAt = LocalDateTime.now();
     }

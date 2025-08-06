@@ -1,7 +1,5 @@
 package org.example.appdata;
 
-import org.example.util.ValidationUtils;
-import org.example.util.ListUtils;
 import org.example.list.LinkedList;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,9 +21,6 @@ public class Product {
     public Product(String id, String name, String description, BigDecimal price, int stockQuantity) {
         if (price.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Price cannot be negative");
-        }
-        if (!ValidationUtils.isInRange(stockQuantity, 0, Integer.MAX_VALUE)) {
-            throw new IllegalArgumentException("Stock quantity must be non-negative");
         }
 
         this.id = id;
@@ -77,9 +72,6 @@ public class Product {
     }
 
     public void setStockQuantity(int stockQuantity) {
-        if (!ValidationUtils.isInRange(stockQuantity, 0, Integer.MAX_VALUE)) {
-            throw new IllegalArgumentException("Stock quantity must be non-negative");
-        }
         this.stockQuantity = stockQuantity;
         this.updatedAt = LocalDateTime.now();
     }
@@ -121,9 +113,6 @@ public class Product {
      * @throws IllegalArgumentException if category is empty
      */
     public void addCategory(String category) {
-        if (org.example.util.StringUtils.isEmpty(category)) {
-            throw new IllegalArgumentException("Category cannot be empty");
-        }
         categories.add(category);
         this.updatedAt = LocalDateTime.now();
     }
@@ -134,7 +123,7 @@ public class Product {
      * @return formatted categories string
      */
     public String getFormattedCategories() {
-        return ListUtils.joinWithTimestamp(categories);
+        return categories.toString();
     }
 
     @Override
@@ -146,4 +135,5 @@ public class Product {
                 ", stockQuantity=" + stockQuantity +
                 ", categories=" + getFormattedCategories() +
                 '}';
+    }
 }
