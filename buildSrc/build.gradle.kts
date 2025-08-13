@@ -3,7 +3,7 @@
  */
 
 plugins {
-    id("dev.nx.gradle.project-graph") version("0.1.0")
+    id("dev.nx.gradle.project-graph") version("0.1.5")
     // Support convention plugins written in Kotlin. Convention plugins are build scripts in 'src/main' that automatically become available as plugins in the main build.
     `kotlin-dsl`
 }
